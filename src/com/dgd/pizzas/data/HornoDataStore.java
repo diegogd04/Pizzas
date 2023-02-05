@@ -1,27 +1,30 @@
 package com.dgd.pizzas.data;
 
-import com.dgd.pizzas.domain.models.Pizza;
+import com.dgd.pizzas.domain.models.Horno;
 
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class HornoDataStore {
-    private static PizzaDataStore instance;
+    private static HornoDataStore instance;
 
-    private Map<Integer, Pizza> dataStore = new TreeMap<>();
+    private Map<Integer, Horno> dataStore = new TreeMap<>();
 
-    public void guardar(Pizza pizza){
-        dataStore.put(pizza.getId(), pizza);
+    public void guardar(Horno horno) {
+        dataStore.put(horno.getId(), horno);
     }
-    public void eliminar(Integer id){
-        dataStore.remove(id);
+
+    public void eliminar(Horno horno) {
+        dataStore.remove(horno.getId(), horno);
     }
-    public Pizza obtener(Integer id){
-        return dataStore.get(id);
+
+    public List<Horno> obtenerTodosHornos() {
+        return dataStore.values().stream().toList();
     }
-    public static PizzaDataStore getInstance(){
-        if (instance == null){
-            instance = new PizzaDataStore();
+    public static HornoDataStore getInstance() {
+        if (instance == null) {
+            instance = new HornoDataStore();
         }
         return instance;
     }
